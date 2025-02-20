@@ -10,9 +10,8 @@
 - OpenVPN – Secure virtual private network (VPN) solution.
 - Nagios – Network and server monitoring tool.
 
-Project Ideas
-Simple Malware Scanner Using Yara
-Simple network Scanner
-Packet Sniffing
-Network Anomalies Detection
-
+# Project Ideas
+- Simple Malware Scanner Using Yara
+- Simple network Scanner
+- Packet Sniffing
+- Network Anomalies Detection
