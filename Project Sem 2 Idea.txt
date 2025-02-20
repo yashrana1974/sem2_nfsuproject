@@ -1,5 +1,5 @@
 Plan of Work
-Flask for Web interface
+PyQt (Desktop GUI) for Tool
 List the features to work on than start writing the script by researching
 Also create the web template to show the list
 
