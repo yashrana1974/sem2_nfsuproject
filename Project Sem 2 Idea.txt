@@ -1,4 +1,5 @@
 Plan of Work
+First create a command line tool than integrate it with the Tool.
 PyQt (Desktop GUI) for Tool
 List the features to work on than start writing the script by researching
 Also create the web template to show the list
