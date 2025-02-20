@@ -6,7 +6,7 @@
 - Netstat – ***Displays network connections, routing tables, and protocol statistics.***
 - IPerf – ***Measures network bandwidth and performance.***
 - Nslookup/Dig – ***DNS query and troubleshooting tools.***
-- TCPDump – Command-line packet capture and network debugging tool.
+- TCPDump – ***Command-line packet capture and network debugging tool.***
 - OpenVPN – Secure virtual private network (VPN) solution.
 - Nagios – Network and server monitoring tool.
 
