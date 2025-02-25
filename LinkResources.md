@@ -4,3 +4,7 @@
 - FreeCodeCamp Documentation : https://www.freecodecamp.org/news/how-to-use-scapy-python-networking/
 - Official Scapy Documentation : https://scapy.readthedocs.io/en/latest/installation.html
 -Tkinter Tutorial : https://youtu.be/YXPyB4XeYLA?feature=shared
+
+
+**Bref Resources (Not Specific)**
+- Computer Networks : https://youtube.com/playlist?list=PL9lx0DXCC4BMS7dB7vsrKI5wzFyVIk2Kg&feature=shared
