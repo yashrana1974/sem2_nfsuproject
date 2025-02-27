@@ -25,7 +25,7 @@ pizza = StringVar()
 pizza.set("Pepperoni")
 
 for text, toppings in TOPPINGS:
-    Radiobutton(root, text=text, variable=pizza, value=mode).pack(anchor=W)
+    Radiobutton(root, text=text, variable=pizza, value=toppings).pack(anchor=W)
 
 def clicked(value):
     myLabel = Label(root, text=value)
