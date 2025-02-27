@@ -11,20 +11,33 @@ root.iconbitmap("TkinterTutorial\christmas-tree.ico")
 #Tkinter varible are bit different form the python varibale
 
 #Need to create integer because the value is, they can also be used with different classes. Like r.get()
-r = IntVar()
-r.set("2")
+
+# r = IntVar()
+# r.set("2")
+
+TOPPINGS = [
+    ("Pepperoni", "Pepperoni"),
+    ("Cheese", "Cheese"),
+    ("Mushroom", "Mushroom"),
+    ("Onion", "Onion")
+]
+pizza = StringVar()
+pizza.set("Pepperoni")
+
+for text, toppings in TOPPINGS:
+    Radiobutton(root, text=text, variable=pizza, value=mode).pack(anchor=W)
 
 def clicked(value):
     myLabel = Label(root, text=value)
     myLabel.pack() 
 
-Radiobutton(root, text="Option 1", variable=r, value=1, command= lambda: clicked(r.get())).pack()
-Radiobutton(root, text="Option 2", variable=r, value=2, command= lambda: clicked(r.get())).pack()
+# Radiobutton(root, text="Option 1", variable=r, value=1, command= lambda: clicked(r.get())).pack()
+# Radiobutton(root, text="Option 2", variable=r, value=2, command= lambda: clicked(r.get())).pack()
 
-myLabel = Label(root, text=r.get())
-myLabel.pack() 
+# myLabel = Label(root, text=r.get())
+# myLabel.pack() 
 
-myButton = Button(root, text="Click Me!", command= lambda: clicked(r.get()))
+myButton = Button(root, text="Click Me!", command= lambda: clicked(pizza.get()))
 myButton.pack()
 
 #creating a quit button
