@@ -1,10 +1,10 @@
 Plan of Work
 
-Explore the Tkinter library (ASAP)
-Start knowing the commands of the scapy to create the function of python for the Tool ScapyUI
-Than plan the windows that will be required for the tool
-Than start the coding for the tool
-**Prepare the documenation side bye side**
+- Explore the Tkinter library (ASAP)
+- Start knowing the commands of the scapy to create the function of python for the Tool ScapyUI
+- Than plan the windows that will be required for the tool
+- Than start the coding for the tool
+- **Prepare the documenation side bye side**
 
 
 First create a command line tool than integrate it with the Tool.
