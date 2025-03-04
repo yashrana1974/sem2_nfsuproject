@@ -1,30 +1,40 @@
 import tkinter as tk
 from tkinter import scrolledtext
 from scapy.all import sniff, IP, TCP, UDP, ICMP
+from scapy.layers.inet6 import IPv6, _ICMPv6  # Import IPv6 and ICMPv6 separately
 import threading
 
 def packet_callback(packet):
-    if packet.haslayer(IP):
+    if packet.haslayer(IP) or packet.haslayer(IPv6):  # Check for both IPv4 and IPv6
         protocol = "Other"
+
         if packet.haslayer(TCP):
             protocol = "TCP"
         elif packet.haslayer(UDP):
             protocol = "UDP"
-        elif packet.haslayer(ICMP):
+        elif packet.haslayer(ICMP) or packet.haslayer(ICMPv6):  # Check for ICMP and ICMPv6
             protocol = "ICMP"
 
-        src_ip = packet[IP].src
-        dst_ip = packet[IP].dst
+        # Extract IP addresses based on packet type
+        if packet.haslayer(IP):  # IPv4 Packet
+            src_ip = packet[IP].src
+            dst_ip = packet[IP].dst
+        elif packet.haslayer(IPv6):  # IPv6 Packet
+            src_ip = packet[IPv6].src
+            dst_ip = packet[IPv6].dst
+
         display_text = f"{protocol} Packet: {src_ip} -> {dst_ip}\n"
+        display_text1 = f"{packet}\n"
         text_area.insert(tk.END, display_text)
         text_area.see(tk.END)
-
+        text_area1.insert(tk.END, display_text1)
+        text_area1.see(tk.END)
 def start_sniffing():
     global sniffing
     sniffing = True
     start_button.config(state=tk.DISABLED)
     stop_button.config(state=tk.NORMAL)
-    thread = threading.Thread(target=sniffer)
+    thread = threading.Thread(target=sniffer, daemon=True)  # Daemon thread to run in background
     thread.start()
 
 def sniffer():
@@ -48,6 +58,15 @@ stop_button = tk.Button(root, text="Stop Sniffing", command=stop_sniffing, state
 stop_button.pack()
 
 text_area = scrolledtext.ScrolledText(root, width=60, height=20)
-text_area.pack()
+text_area.pack(side='top', expand='yes')
+
+text_area1 = scrolledtext.ScrolledText(root, width=60, height=20)
+text_area1.pack(side='bottom', expand='yes')
+
+text_area2 = scrolledtext.ScrolledText(root, width=60, height=20)
+text_area2.pack(side='top', expand='yes')
+
+text_area3 = scrolledtext.ScrolledText(root, width=60, height=20)
+text_area3.pack(side='bottom', expand='yes')
 
 root.mainloop()
