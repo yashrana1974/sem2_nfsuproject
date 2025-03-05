@@ -12,7 +12,7 @@ def packet_callback(packet):
             protocol = "TCP"
         elif packet.haslayer(UDP):
             protocol = "UDP"
-        elif packet.haslayer(ICMP) or packet.haslayer(ICMPv6):  # Check for ICMP and ICMPv6
+        elif packet.haslayer(ICMP) or packet.haslayer(_ICMPv6):  # Check for ICMP and ICMPv6
             protocol = "ICMP"
 
         # Extract IP addresses based on packet type
@@ -52,21 +52,21 @@ root.title("Network Sniffer")
 root.geometry("500x400")
 
 start_button = tk.Button(root, text="Start Sniffing", command=start_sniffing)
-start_button.pack()
+start_button.grid(row=0, column=0)
 
 stop_button = tk.Button(root, text="Stop Sniffing", command=stop_sniffing, state=tk.DISABLED)
-stop_button.pack()
+stop_button.grid(row=0, column=1)
 
 text_area = scrolledtext.ScrolledText(root, width=60, height=20)
-text_area.pack(side='top', expand='yes')
+text_area.grid(row=1, column=0, sticky="N,E,NS")
 
 text_area1 = scrolledtext.ScrolledText(root, width=60, height=20)
-text_area1.pack(side='bottom', expand='yes')
+text_area1.grid(row=1, column=1, sticky="N,W,NS")
 
 text_area2 = scrolledtext.ScrolledText(root, width=60, height=20)
-text_area2.pack(side='top', expand='yes')
+text_area2.grid(row=2, column=0, sticky="S,E,NS")
 
 text_area3 = scrolledtext.ScrolledText(root, width=60, height=20)
-text_area3.pack(side='bottom', expand='yes')
+text_area3.grid(row=2, column=1, sticky="S,W,NS")
 
 root.mainloop()
