@@ -49,7 +49,7 @@ def stop_sniffing():
 # GUI Setup
 root = tk.Tk()
 root.title("Network Sniffer")
-root.geometry("500x400")
+root.geometry("1000x750")
 
 start_button = tk.Button(root, text="Start Sniffing", command=start_sniffing)
 start_button.grid(row=0, column=0)
