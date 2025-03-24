@@ -1,7 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from tkinter import scrolledtext
-from scapy.all import sniff, IP, TCP, UDP, ICMP, Raw, DNSQR, DNSRR, DNS
+from scapy.all import sniff, IP, TCP, UDP, ICMP, Raw, DNS
 from scapy.layers.inet6 import IPv6, _ICMPv6  # Corrected import
 import threading
 # For pcap file read
@@ -9,55 +9,74 @@ from scapy.utils import rdpcap
 from tkinter import filedialog
 
 def packet_callback(packet):
-    if packet.haslayer(IP) or packet.haslayer(IPv6):  # Check for both IPv4 and IPv6
-        protocol = "Other"
+    try:
+        if packet.haslayer(IP) or packet.haslayer(IPv6):  # Check for both IPv4 and IPv6
+            protocol = "Other"
 
-        if packet.haslayer(TCP):
-            protocol = "TCP"
-        elif packet.haslayer(UDP):
-            protocol = "UDP"
-        elif packet.haslayer(ICMP) or packet.haslayer(_ICMPv6):  # Check for ICMP and ICMPv6
-            protocol = "ICMP"
+            if packet.haslayer(TCP):
+                protocol = "TCP"
+            elif packet.haslayer(UDP):
+                protocol = "UDP"
+            elif packet.haslayer(ICMP) or packet.haslayer(_ICMPv6):  # Check for ICMP and ICMPv6
+                protocol = "ICMP"
 
-        # Extract IP addresses based on packet type
-        if packet.haslayer(IP):  # IPv4 Packet
-            src_ip = packet[IP].src
-            dst_ip = packet[IP].dst
-        elif packet.haslayer(IPv6):  # IPv6 Packet
-            src_ip = packet[IPv6].src
-            dst_ip = packet[IPv6].dst
+            # Extract IP addresses based on packet type
+            if packet.haslayer(IP):  # IPv4 Packet
+                src_ip = packet[IP].src
+                dst_ip = packet[IP].dst
+            elif packet.haslayer(IPv6):  # IPv6 Packet
+                src_ip = packet[IPv6].src
+                dst_ip = packet[IPv6].dst
 
-        # Insert protocol and IP data
-        display_text1 = f"{protocol} Packet: {src_ip} -> {dst_ip}\n"
-        text_area1.insert(END, display_text1)
-        text_area1.see(END)
+            # Insert protocol and IP data
+            display_text1 = f"{protocol} Packet: {src_ip} -> {dst_ip}\n"
+            text_area1.insert(END, display_text1)
+            text_area1.see(END)
 
-        # Insert full packet details
-        display_text2 = f"{packet}\n"
-        text_area2.insert(END, display_text2)
-        text_area2.see(END)
+            # Insert full packet details
+            display_text2 = f"{packet}\n"
+            text_area2.insert(END, display_text2)
+            text_area2.see(END)
 
-        # Extract HTTP Data from Raw Layer
-        if packet.haslayer(TCP) and packet.haslayer(Raw):  # Ensure TCP and Raw layer exists
-            sport = packet[TCP].sport
-            dport = packet[TCP].dport
-            raw_data = packet[Raw].load.decode(errors="ignore")  # Decode safely
+            # Extract HTTP Data from Raw Layer
+            if packet.haslayer(TCP) and packet.haslayer(Raw):  # Ensure TCP and Raw layer exists
+                sport = packet[TCP].sport
+                dport = packet[TCP].dport
+                raw_data = packet[Raw].load.decode(errors="ignore")  # Decode safely
 
-            # Check if packet is HTTP (port 80) or HTTPS (port 443)
-            if sport == 80 or dport == 80 or sport == 443 or dport == 443:
-                display_text3 = f"HTTP Data ({sport} -> {dport}):\n{raw_data}\n\n"
-                text_area3.insert(END, display_text3)
-                text_area3.see(END)
+                # Check if packet is HTTP (port 80) or HTTPS (port 443)
+                if sport == 80 or dport == 80 or sport == 443 or dport == 443:
+                    display_text3 = f"HTTP Data ({sport} -> {dport}):\n{raw_data}\n\n"
+                    text_area3.insert(END, display_text3)
+                    text_area3.see(END)
 
-        # Extract DNS Query/Response Data
-        if packet.haslayer(DNS):
-            if packet.haslayer(DNSQR):  # DNS Query
-                display_text4 = f"DNS Query: {packet[DNSQR].qname.decode()} from {src_ip}\n"
-            elif packet.haslayer(DNSRR):  # DNS Response
-                display_text4 = f"DNS Response: {packet[DNSRR].rdata} for {packet[DNSQR].qname.decode()}\n"
-
-            text_area4.insert(END, display_text4)
-            text_area4.see(END)
+            # Extract DNS Query/Response Data
+            if packet.haslayer(DNS):
+                dns_layer = packet[DNS]
+                
+                # Check if it's a DNS query
+                if dns_layer.qdcount > 0:  # There's at least one query in the DNS packet
+                    dns_query_name = dns_layer.qd[0].qname.decode()  # Extract the query domain name
+                    display_text4 = f"DNS Query: {dns_query_name} from {src_ip}\n"
+                
+                # Check if it's a DNS response
+                elif dns_layer.ancount > 0:  # There's at least one answer in the DNS response
+                    dns_response = dns_layer.an[0]  # Get the first DNS answer
+                    if isinstance(dns_response.rdata, bytes):  # Check if rdata is a valid bytes object
+                        dns_response_data = dns_response.rdata.decode()  # Extract the response data (usually an IP address)
+                        query_name = dns_layer.qd[0].qname.decode()  # Extract the original queried domain name
+                        display_text4 = f"DNS Response: {dns_response_data} for {query_name}\n"
+                    else:
+                        display_text4 = f"DNS Response (non-IP response) for {dns_layer.qd[0].qname.decode()}\n"
+                
+                # Insert the DNS output into the text area
+                text_area4.insert(END, display_text4)
+                text_area4.see(END)
+    except IndexError:
+        print("Warning: Malformed packet encountered (IndexError). Skipping.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        
 
 def start_sniffing():
     global sniffing
