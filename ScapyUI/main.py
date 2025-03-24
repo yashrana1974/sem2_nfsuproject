@@ -162,7 +162,7 @@ def aboutwindow():
     about.title("ScapyUI - About Tool")
     about.geometry("500x360")
     about.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
-    about.configure(background='#5D450E')
+    about.configure(background='#82643C')
 
     # Creating a text area with information
     info_area = scrolledtext.ScrolledText(about, width=60, height=15, wrap=WORD, state=NORMAL, bg="#EDE8D0")
@@ -215,7 +215,7 @@ def read_pcap():
         pcap_window.title(f"PCAP Viewer - {file_path.split('/')[-1]}")
         pcap_window.geometry("800x600")
         pcap_window.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
-        pcap_window.configure(background='#5D450E')
+        pcap_window.configure(background='#82643C')
 
         # Create a ScrolledText widget to display packet contents
         pcap_text_area = scrolledtext.ScrolledText(pcap_window, width=100, height=30, state=NORMAL, bg="#EDE8D0")
@@ -242,7 +242,7 @@ root.geometry("1000x800")
 root.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
 
 #Color for the body of tool
-root.configure(background='#5D450E') #'#D1BF95'
+root.configure(background='#82643C') #'#D1BF95'
 
 # Adding a Menu
 myMenu = Menu(root, background="#D1BF95")
