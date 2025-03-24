@@ -239,7 +239,7 @@ def read_pcap():
 root = Tk()
 root.title("ScapyUI - Network Sniffer")
 root.geometry("1000x800")
-root.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
+root.iconbitmap('C:\\Users\\ranay\\OneDrive\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico') #File icon logo image path
 
 #Color for the body of tool
 root.configure(background='#82643C') #'#D1BF95'
