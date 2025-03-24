@@ -7,6 +7,47 @@ import threading
 # For pcap file read
 from scapy.utils import rdpcap
 from tkinter import filedialog
+# Recording saving logs
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+
+def save_logs_to_pdf():
+    """ Saves all logs from text areas to a PDF file. """
+    file_path = filedialog.asksaveasfilename(defaultextension=".pdf", filetypes=[("PDF Files", "*.pdf")])
+    if not file_path:
+        return  # User canceled
+
+    c = canvas.Canvas(file_path, pagesize=letter)
+    width, height = letter
+
+    text_logs = [
+        ("Protocol Summary", text_area1.get("1.0", END)),
+        ("Packet Details", text_area2.get("1.0", END)),
+        ("HTTP Data", text_area3.get("1.0", END)),
+        ("DNS Queries", text_area4.get("1.0", END)),
+    ]
+
+    y_position = height - 40
+    c.setFont("Helvetica-Bold", 12)
+
+    for title, content in text_logs:
+        if y_position < 50:
+            c.showPage()
+            c.setFont("Helvetica-Bold", 12)
+            y_position = height - 40
+        c.drawString(50, y_position, title)
+        y_position -= 20
+        c.setFont("Helvetica", 10)
+        for line in content.split("\n"):
+            if y_position < 50:
+                c.showPage()
+                c.setFont("Helvetica", 10)
+                y_position = height - 40
+            c.drawString(50, y_position, line)
+            y_position -= 15
+        y_position -= 10
+
+    c.save()
 
 def packet_callback(packet):
     try:
@@ -76,7 +117,7 @@ def packet_callback(packet):
         print("Warning: Malformed packet encountered (IndexError). Skipping.")
     except Exception as e:
         print(f"Unexpected error: {e}")
-        
+
 
 def start_sniffing():
     global sniffing
