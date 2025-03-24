@@ -7,7 +7,55 @@ import threading
 # For pcap file read
 from scapy.utils import rdpcap
 from tkinter import filedialog
- 
+from reportlab.lib.pagesizes import letter
+# For report and pdf storing
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib.utils import simpleSplit
+from datetime import datetime
+from tkinter import filedialog
+
+def save_log_as_pdf(text_widget):
+    """ Saves the content of a text widget to a properly formatted PDF file """
+    file_path = filedialog.asksaveasfilename(defaultextension=".pdf",
+                                             filetypes=[("PDF Files", "*.pdf")],
+                                             title="Save Log as PDF")
+    if not file_path:
+        return  # User canceled the save dialog
+
+    content = text_widget.get("1.0", END).strip()  # Extract text
+
+    if not content:
+        print("No data to save.")
+        return
+
+    # Create a PDF document
+    c = canvas.Canvas(file_path, pagesize=letter)
+    c.setFont("Helvetica", 10)
+
+    # Title & Timestamp
+    c.drawString(100, 750, "ScapyUI - Network Traffic Log")
+    c.drawString(100, 735, f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    c.line(100, 730, 500, 730)  # Horizontal line
+
+    # Writing text with proper word wrapping
+    y_position = 710
+    max_width = 400  # Maximum width for text before wrapping
+    line_height = 15  # Line spacing
+
+    for line in content.split("\n"):
+        wrapped_lines = simpleSplit(line, "Helvetica", 10, max_width)  # Automatically split long lines
+        for wrapped_line in wrapped_lines:
+            if y_position < 50:  # Create a new page if space is insufficient
+                c.showPage()
+                c.setFont("Helvetica", 10)
+                y_position = 750  # Reset y_position for the new page
+            c.drawString(100, y_position, wrapped_line)
+            y_position -= line_height  # Move down for the next line
+
+    c.save()
+    print(f"Log saved as PDF: {file_path}")
+
 def packet_callback(packet):
     try:
         if packet.haslayer(IP) or packet.haslayer(IPv6):  # Check for both IPv4 and IPv6
@@ -173,9 +221,13 @@ def read_pcap():
 
         pcap_text_area.config(state=DISABLED)  # Make text read-only
 
+        # Save Log Button
+        save_pcap_button = Button(pcap_window, text="Save Log as PDF", command=lambda: save_log_as_pdf(pcap_text_area))
+        save_pcap_button.pack(pady=5)
+
         # Exit Button
         exit_button = Button(pcap_window, text="Close", command=pcap_window.destroy)
-        exit_button.pack(pady=10)
+        exit_button.pack(pady=5)
 
 # GUI Setup
 root = Tk()
@@ -214,6 +266,9 @@ text_area3.grid(row=3, column=0, columnspan=2, sticky="nsew", padx=5, pady=5)
 
 text_area4 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED)
 text_area4.grid(row=4, column=0, columnspan=2, sticky="nsew", padx=5, pady=5)
+
+save_button = Button(root, text="Save Log as PDF", command=lambda: save_log_as_pdf(text_area2))
+save_button.grid(row=5, column=0, columnspan=2, pady=10)
 
 # Grid Layout Expansion
 root.grid_rowconfigure(1, weight=1)
