@@ -7,7 +7,7 @@ import threading
 # For pcap file read
 from scapy.utils import rdpcap
 from tkinter import filedialog
-
+ 
 def packet_callback(packet):
     if packet.haslayer(IP) or packet.haslayer(IPv6):  # Check for both IPv4 and IPv6
         protocol = "Other"
