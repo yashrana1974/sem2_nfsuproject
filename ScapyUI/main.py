@@ -15,6 +15,8 @@ from reportlab.lib.utils import simpleSplit
 from datetime import datetime
 from tkinter import filedialog
 
+
+
 def save_log_as_pdf(text_widget):
     """ Saves the content of a text widget to a properly formatted PDF file """
     file_path = filedialog.asksaveasfilename(defaultextension=".pdf",
@@ -159,9 +161,11 @@ def aboutwindow():
     about = Toplevel(root)  # Create a new window
     about.title("ScapyUI - About Tool")
     about.geometry("500x360")
+    about.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
+    about.configure(background='#5D450E')
 
     # Creating a text area with information
-    info_area = scrolledtext.ScrolledText(about, width=60, height=15, wrap=WORD, state=NORMAL)
+    info_area = scrolledtext.ScrolledText(about, width=60, height=15, wrap=WORD, state=NORMAL, bg="#EDE8D0")
     info_area.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
     # Tool Information Content
@@ -191,7 +195,7 @@ For any issues or contributions, feel free to contact the developer.
     info_area.config(state=DISABLED)
 
     # Exit Button
-    buttonQuit = Button(about, text="Close", command=about.destroy)
+    buttonQuit = Button(about, text="Close", bg="#ff5a5a", fg="#ffffff", command=about.destroy)
     buttonQuit.grid(row=1, column=0, pady=10, sticky="nsew")
 
     # Adjust column/row behavior
@@ -210,9 +214,11 @@ def read_pcap():
         pcap_window = Toplevel(root)
         pcap_window.title(f"PCAP Viewer - {file_path.split('/')[-1]}")
         pcap_window.geometry("800x600")
+        pcap_window.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
+        pcap_window.configure(background='#5D450E')
 
         # Create a ScrolledText widget to display packet contents
-        pcap_text_area = scrolledtext.ScrolledText(pcap_window, width=100, height=30, state=NORMAL)
+        pcap_text_area = scrolledtext.ScrolledText(pcap_window, width=100, height=30, state=NORMAL, bg="#EDE8D0")
         pcap_text_area.pack(padx=10, pady=10, fill="both", expand=True)
 
         # Insert packets into the text area
@@ -222,52 +228,57 @@ def read_pcap():
         pcap_text_area.config(state=DISABLED)  # Make text read-only
 
         # Save Log Button
-        save_pcap_button = Button(pcap_window, text="Save Log as PDF", command=lambda: save_log_as_pdf(pcap_text_area))
+        save_pcap_button = Button(pcap_window, bg="#0173e6", fg="#ffffff", text="Save Log as PDF", command=lambda: save_log_as_pdf(pcap_text_area))
         save_pcap_button.pack(pady=5)
 
         # Exit Button
-        exit_button = Button(pcap_window, text="Close", command=pcap_window.destroy)
+        exit_button = Button(pcap_window, text="Close", bg="#ff5a5a", fg="#ffffff",command=pcap_window.destroy)
         exit_button.pack(pady=5)
 
 # GUI Setup
 root = Tk()
 root.title("ScapyUI - Network Sniffer")
 root.geometry("1000x800")
+root.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
+
+#Color for the body of tool
+root.configure(background='#5D450E') #'#D1BF95'
 
 # Adding a Menu
-myMenu = Menu(root)
+myMenu = Menu(root, background="#D1BF95")
+# myMenu.configure(bg="#D1BF95")
 root.config(menu=myMenu)
 
-navigate = Menu(myMenu, tearoff=0)
+navigate = Menu(myMenu, tearoff=0, bg="#D1BF95")
 myMenu.add_cascade(label="Navigate", menu=navigate)
 navigate.add_command(label="Open PCAP File", command=read_pcap)
 navigate.add_command(label="Exit", command=root.quit)
 
-more = Menu(myMenu, tearoff=0)
+more = Menu(myMenu, tearoff=0, bg="#D1BF95")
 myMenu.add_cascade(label="More", menu=more)
 more.add_command(label="About", command=aboutwindow)
 
 # Start/Stop Buttons
-start_button = Button(root, text="Start Sniffing", command=start_sniffing)
+start_button = Button(root, text="Start Sniffing",command=start_sniffing, bg="#25b31c")
 start_button.grid(row=0, column=0, padx=10, pady=10)
 
-stop_button = Button(root, text="Stop Sniffing", command=stop_sniffing, state=DISABLED)
+stop_button = Button(root, text="Stop Sniffing", command=stop_sniffing, state=DISABLED, bg="#ff5a5a", fg="#ffffff")
 stop_button.grid(row=0, column=1, padx=10, pady=10)
 
 # Text Areas with Scrollbars
-text_area1 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED)
+text_area1 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED, bg="#EDE8D0") ##FFFF82
 text_area1.grid(row=1, column=0, columnspan=2, sticky="nsew", padx=5, pady=5)
 
-text_area2 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED)
+text_area2 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED, bg="#EDE8D0")
 text_area2.grid(row=2, column=0, columnspan=2, sticky="nsew", padx=5, pady=5)
 
-text_area3 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED)
+text_area3 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED, bg="#EDE8D0")
 text_area3.grid(row=3, column=0, columnspan=2, sticky="nsew", padx=5, pady=5)
 
-text_area4 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED)
+text_area4 = scrolledtext.ScrolledText(root, width=60, height=20, state=DISABLED, bg="#EDE8D0")
 text_area4.grid(row=4, column=0, columnspan=2, sticky="nsew", padx=5, pady=5)
 
-save_button = Button(root, text="Save Log as PDF", command=lambda: save_log_as_pdf(text_area2))
+save_button = Button(root, text="Save Log as PDF", bg="#0173e6", fg="#ffffff",command=lambda: save_log_as_pdf(text_area2))
 save_button.grid(row=5, column=0, columnspan=2, pady=10)
 
 # Grid Layout Expansion
