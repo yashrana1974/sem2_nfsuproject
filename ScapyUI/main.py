@@ -161,7 +161,7 @@ def aboutwindow():
     about = Toplevel(root)  # Create a new window
     about.title("ScapyUI - About Tool")
     about.geometry("500x360")
-    about.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
+    # about.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico') #Path to icon image
     about.configure(background='#82643C')
 
     # Creating a text area with information
@@ -214,7 +214,7 @@ def read_pcap():
         pcap_window = Toplevel(root)
         pcap_window.title(f"PCAP Viewer - {file_path.split('/')[-1]}")
         pcap_window.geometry("800x600")
-        pcap_window.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico')
+        # pcap_window.iconbitmap('C:\\Users\\mscdfisyash\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico') #Path to icon image
         pcap_window.configure(background='#82643C')
 
         # Create a ScrolledText widget to display packet contents
@@ -239,7 +239,7 @@ def read_pcap():
 root = Tk()
 root.title("ScapyUI - Network Sniffer")
 root.geometry("1000x800")
-root.iconbitmap('C:\\Users\\ranay\\OneDrive\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico') #File icon logo image path
+# root.iconbitmap('C:\\Users\\ranay\\OneDrive\\Documents\\GitHub\\sem2_nfsuproject\\ScapyUI\\res\\logo.ico') #Path to icon image
 
 #Color for the body of tool
 root.configure(background='#82643C') #'#D1BF95'
