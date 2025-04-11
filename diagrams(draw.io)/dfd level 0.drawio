@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.10">
+  <diagram name="Page-1" id="jsl9aLmWAPg_ExKrOilS">
+    <mxGraphModel dx="1190" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="SjohlsuVj_89NBPHVslp-18" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="100" y="110" width="650" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-2" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;ScapyUI Tool&lt;/font&gt;" style="shape=ellipse;html=1;dashed=0;whiteSpace=wrap;aspect=fixed;perimeter=ellipsePerimeter;" vertex="1" parent="SjohlsuVj_89NBPHVslp-18">
+          <mxGeometry x="255" y="70" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-3" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="SjohlsuVj_89NBPHVslp-18" source="SjohlsuVj_89NBPHVslp-2" target="SjohlsuVj_89NBPHVslp-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="320" as="sourcePoint" />
+            <mxPoint x="350" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-4" value="0.1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="SjohlsuVj_89NBPHVslp-18">
+          <mxGeometry x="300" y="70" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-5" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;User&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="SjohlsuVj_89NBPHVslp-18">
+          <mxGeometry y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-6" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;Network Interface&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="SjohlsuVj_89NBPHVslp-18">
+          <mxGeometry x="530" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.011;entryY=0.396;entryDx=0;entryDy=0;entryPerimeter=0;startSize=6;" edge="1" parent="SjohlsuVj_89NBPHVslp-18" source="SjohlsuVj_89NBPHVslp-5" target="SjohlsuVj_89NBPHVslp-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="310" as="sourcePoint" />
+            <mxPoint x="350" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-9" value="Start/Stop Capture" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SjohlsuVj_89NBPHVslp-7">
+          <mxGeometry x="-0.0947" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.006;exitY=0.61;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;startSize=6;exitPerimeter=0;" edge="1" parent="SjohlsuVj_89NBPHVslp-18" source="SjohlsuVj_89NBPHVslp-2" target="SjohlsuVj_89NBPHVslp-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="267" y="135" as="sourcePoint" />
+            <mxPoint x="130" y="135" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-10" value="Captured Packets" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SjohlsuVj_89NBPHVslp-8">
+          <mxGeometry x="0.0076" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.981;exitY=0.384;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;startSize=6;exitPerimeter=0;" edge="1" parent="SjohlsuVj_89NBPHVslp-18" source="SjohlsuVj_89NBPHVslp-2" target="SjohlsuVj_89NBPHVslp-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="391.9200000000001" y="123.45999999999992" as="sourcePoint" />
+            <mxPoint x="530.4799999999998" y="123.01999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-12" value="Reads Packets" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SjohlsuVj_89NBPHVslp-11">
+          <mxGeometry x="-0.0947" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.991;entryY=0.602;entryDx=0;entryDy=0;startSize=6;entryPerimeter=0;" edge="1" parent="SjohlsuVj_89NBPHVslp-18" source="SjohlsuVj_89NBPHVslp-6" target="SjohlsuVj_89NBPHVslp-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="135" as="sourcePoint" />
+            <mxPoint x="402" y="134" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-15" value="Reads Packets" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SjohlsuVj_89NBPHVslp-14">
+          <mxGeometry x="-0.0947" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SjohlsuVj_89NBPHVslp-17" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Level 1 DFD&lt;/font&gt;" style="rounded=1;arcSize=9;fillColor=#F7F8F9;align=center;spacingLeft=5;strokeColor=#DEE1E6;html=1;strokeWidth=2;fontSize=12" vertex="1" parent="SjohlsuVj_89NBPHVslp-18">
+          <mxGeometry x="180" width="290" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
