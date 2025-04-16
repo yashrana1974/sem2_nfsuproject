@@ -1,2 +1,5 @@
+Minor Project report making --> Pending (citations, images[screenshots], diagrams, [edit tables, images, screenshot, indexes, description about the diagram(all like activity, use case, sequence etc.) in report], Page Num add in tables)
+
+
 - Fill table with page numbers
 - Add appendix
